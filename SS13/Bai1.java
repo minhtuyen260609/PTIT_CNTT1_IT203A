@@ -1,35 +1,30 @@
-class Person{
-    protected String name;
-    protected int age;
-    public Person(String name,int age){
-        this.name=name;
-        this.age=age;
-    }
-    public void display(){
-        System.out.println("Ho ten: "+name);
-        System.out.println("Tuoi: "+age);
-    }
-}
-
-class Student extends Person{
-    private String studentId;
-    private double gpa;
-    public Student(String name,int age,String studentId,double gpa){
-        super(name,age);
-        this.studentId=studentId;
-        this.gpa=gpa;
-    }
-    @Override
-    public void display(){
-        super.display();
-        System.out.println("Ma SV: "+studentId);
-        System.out.println("Diem TB: "+gpa);
-    }
-}
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Bai1{
-    public static void main(String[]args){
-        Student s=new Student("Nguyen Van A",20,"SV001",8.5);
-        s.display();
+    public static void main(String[] args){
+        ArrayList<Double> list=new ArrayList<>();
+        list.add(36.5);
+        list.add(40.2);
+        list.add(37.0);
+        list.add(12.5);
+        list.add(39.8);
+        list.add(99.9);
+        list.add(36.8);
+        System.out.println("Danh sách ban đầu: "+list);
+        Iterator<Double> it=list.iterator();
+        while(it.hasNext()){
+            double temp=it.next();
+            if(temp<34.0||temp>42.0){
+                it.remove();
+            }
+        }
+        System.out.println("Danh sách sau khi lọc: "+list);
+        double sum=0;
+        for(double t:list){
+            sum+=t;
+        }
+        double avg=sum/list.size();
+        System.out.printf("Nhiệt độ trung bình: %.2f",avg);
     }
 }

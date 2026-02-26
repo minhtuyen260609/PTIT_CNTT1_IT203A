@@ -1,27 +1,37 @@
-class Animals{
-    public void sound(){
-        System.out.println("Dong vat keu");
-    }
-}
+import java.util.LinkedList;
 
-class Dogs extends Animals{
-    @Override
-    public void sound(){
-        System.out.println("Gau gau");
+class EmergencyRoom{
+    private LinkedList<String> queue=new LinkedList<>();
+    public void patientCheckIn(String name){
+        queue.addLast(name);
     }
-    public void fetch(){
-        System.out.println("Cho di nhat bong");
+    public void emergencyCheckIn(String name){
+        queue.addFirst(name);
+    }
+    public void treatPatient(){
+        if(queue.isEmpty()){
+            System.out.println("Không còn bệnh nhân");
+            return;
+        }
+        String name=queue.removeFirst();
+        if(queue.size()>=0){
+            if(name.equals("C")){
+                System.out.println("Đang cấp cứu: "+name);
+            }else{
+                System.out.println("Đang khám: "+name);
+            }
+        }
     }
 }
 
 public class Bai4{
-    public static void main(String[]args){
-        Animals animal=new Dog();
-        animal.sound();
-
-        if(animal instanceof Dogs){
-            Dog d=(Dogs)animal;
-            d.fetch();
-        }
+    public static void main(String[] args){
+        EmergencyRoom er=new EmergencyRoom();
+        er.patientCheckIn("A");
+        er.patientCheckIn("B");
+        er.emergencyCheckIn("C");
+        er.treatPatient();
+        er.treatPatient();
+        er.treatPatient();
     }
 }
